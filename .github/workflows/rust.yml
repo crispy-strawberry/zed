@@ -21,4 +21,13 @@ jobs:
       run: rustup target add wasm32-wasi
 
     - name: Build
-      run: cargo build --release --verbose
+      run: cargo build --release
+
+    - name: Upload Zed binary
+      uses: actions/upload-artifact@v4.3.4
+      with:
+        # Artifact name
+        name: zed
+        # A file, directory or wildcard pattern that describes what to upload
+        path: ./target/release/Zed.exe
+        if-no-files-found: error
